@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% block content %}
+{% for field in form %}                                   
+    {% if field.errors %}
+        {% for error in field.errors %}
+            <div class="alert alert-danger" role="alert">
+            <span class="sr-only">Error:</span>
+           {{field.label}}: {{ error }}
+            </div>
+        {% endfor %}
+    {% endif %}
+{% endfor %}
+<div class="col-md-3"></div>
+<div class="col-md-6">
+<div class="topSpace"><br/><br/></div>
+<div class="panel panel-info">
+    <div class="panel-heading">
+        <b>注册</b>
+    </div>
+        <div class="panel-body">
+        <form class="form-horizontal" action="" method="POST">{% csrf_token %}
+        <div class="input-group">
+            <span class="input-group-addon" >用户名&nbsp;&nbsp;&nbsp;</span>
+            <input type="text" class="form-control" id="exampleInputName2" placeholder="" value={{from.username.value}}>
+        </div>         
+           <br>
+          <div class="input-group">
+            <span class="input-group-addon">邮箱&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  </span>
+              <input type="email" class="form-control" id="inputEmail3" placeholder="" value={{form.email.value}}>
+          </div>
+            <br>
+          <div class="input-group">
+            <span class="input-group-addon">密码&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+              <input type="password" class="form-control" id="inputPassword3" placeholder="" value={{form.password.value}}>
+          </div>
+            <br>
+           <div class="input-group">
+            <span class="input-group-addon">确认密码</span>
+               <input type="password" class="form-control" id="inputPassword3" placeholder="" value={{form.password.value}}>
+           </div>
+            <br/>
+            <input class="btn btn-primary" type="submit" value="注册">
+          </div>
+        </form>
+       </div>
+</div>
+<div class="col-md-3"></div>
+</div>
+{% endblock %}

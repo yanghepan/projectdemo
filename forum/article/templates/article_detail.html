@@ -1,0 +1,18 @@
+{% extends "base.html"%}
+{% block content %}
+ 
+<ol class="breadcrumb">
+  <li><a href="#">首页</a></li>
+  <li><a href="#">{{article.block.name}}</a></li>
+  <li class="active">{{article.title}}</li>
+</ol>
+<table class="table table-bordered">
+   <tr>
+      <td>作者:yhp</td>
+      <td>
+       <span style="font-weight:bold;font-size:16px">{{ article.title }}</span><br/>
+       <span>{{ article.content }}</span>
+      </td>
+   </tr>
+</table>
+{% endblock %}

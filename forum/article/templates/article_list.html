@@ -19,7 +19,7 @@
     <tbody>
         {% for article in articles%}
        <tr>
-          <td>{{ article.title }}</td>
+          <td><a href="/article/detail/{{article.id}}">{{ article.title }}</a></td>
           <td>{{ article.content }}</td>
           <td>{{ article.create_timestamp|date:"Y-m-d P"}}</td>
           <td>{{ article.last_update_timestamp|date:"Y-m-d P"}}</td>
@@ -29,22 +29,25 @@
 </table>
 <nav aria-label="Page navigation">
   <ul class="pagination">
+    {% if p.has_previous %}
+    <li><a href="?page_no=1">首页</a></li>
     <li>
-      <a href="#" aria-label="Previous">
+      <a href="?page_no={{p.previous_link}}" aria-label="Previous">
         <span aria-hidden="true">&laquo;</span>
       </a>
     </li>
-    <li><a href="#">1</a></li>
-    <li><a href="#">2</a></li>
-    <li><a href="#">3</a></li>
-    <li><a href="#">4</a></li>
-    <li><a href="#">5</a></li>
+    {% endif %}
+    {% for i in p.page_links %}
+    <li {% if i == p.current_no %} class="active" {% endif %}><a href="?page_no={{i}}">{{i}}</a></li>
+    {% endfor %}
+    {% if p.has_next%}
     <li>
-      <a href="#" aria-label="Next">
+      <a href="?page_no={{p.next_link}}" aria-label="Next">
         <span aria-hidden="true">&raquo;</span>
       </a>
     </li>
+     <li><a href="?page_no={{p.page_cnt}}">尾页</a></li>
+    {% endif %}
   </ul>
 </nav>
-
 {% endblock %}
