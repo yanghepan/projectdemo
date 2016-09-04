@@ -17,11 +17,13 @@ import django
 from django.conf.urls import url,include
 from django.contrib import admin
 import views
-
+from  register.views import activate
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^article/',include('article.urls')),
     url(r'^$',views.index),
     url(r'^register/',include('register.urls')),
+    url(r'^activate/(?P<code>\w+)$',activate),   
+    url(r'^accounts/',include('django.contrib.auth.urls')),
    # url(r'^static(?P<path>.*)$',django.contrib.staticfiles.views.serve),
 ]

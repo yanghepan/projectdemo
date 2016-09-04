@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="row">
+<div class="col-md-3"></div>
+<div class="col-md-6">
+<div class="topSpace">&nbsp;&nbsp;<br/></div>
+{% if form.non_field_errors %}
+    {% for error in form.non_field_errors %}
+    <div class="alert alert-danger">{{ error }}</div>
+    {% endfor %}
+{% endif %}
+{% if form.username.errors %}
+    {% for error in form.username.errors %}
+        <div class="alert alert-danger">用户名:{{ error }}</div>
+    {% endfor %}
+{% endif %}
+{% if form.password.errors %}
+    {% for error in form.password.errors %}
+        <div class="alert alert-danger">密码:{{ error }}</div>
+    {% endfor %}
+{% endif %}
+
+<div class="panel panel-info">
+   <div class="panel-heading"><b>登录</b></div>
+   <div class="panel-body">
+       <form action="" method="POST" class="form-horizontal">{% csrf_token %}
+            <div class="input-group">
+                    <span class="input-group-addon">用户名&nbsp;&nbsp;&nbsp;</span>
+                    <input class="form-control" type="text" name="username" value={{ form.username.value }}>
+            </div>
+           <div class="input-group">
+                   <span class="input-group-addon">密码&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                   <input class="form-control" type="password" name="password" value={{ form.password.value }}>
+           </div>
+            <br />
+           <input class="btn btn-primary" type="submit" value="登录">
+       </form>
+   </div>
+
+   <div class="panel-footer">
+   <a href="/register">还没有账户?去注册...</a>
+   </div>
+</div>
+</div>
+<div class="col-md-3">&nbsp;</div>
+</div>
+
+{% endblock %}
